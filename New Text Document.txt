@@ -1,0 +1,26 @@
+openssl enc -des-ede3-cbc -salt -in plain.txt -out encrypted_3des.txt -k yourpassword
+
+openssl enc -aes-256-cbc -salt -in plain.txt -out encrypted_aes.txt -k yourpassword
+
+
+
+
+
+openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+
+openssl rsautl -encrypt -inkey public_key.pem -pubin -in plain.txt -out encrypted_rsa.txt
+
+openssl rsautl -decrypt -inkey private_key.pem -in encrypted_rsa.txt -out decrypted_rsa.txt
+
+
+
+1. Generate RSA Keys
+a. Generate a private key
+openssl genpkey -algorithm RSA -out private_key.pem -aes256
+b. Extract the public key from the private key
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+2. Encrypt the file using the public key
+openssl rsautl -encrypt -inkey public_key.pem -pubin -in ssd -out ssd.enc
+3. Decrypt the file using the private key
+openssl rsautl -decrypt -inkey private_key.pem -in ssd.enc -out ssd_decrypted_rsa.txt
