@@ -3,6 +3,7 @@
            clientAuth="false" sslProtocol="TLS" 
            keystoreFile="/path/to/keystore.jks" keystorePass="yourpassword" />
 
+sudo tar xzvf apache-tomcat-10.1.28.tar.gz -C /opt/tomcat --strip-components=1
 
 SSD Lab 03
 Configure the Apache tomcat Web server to support HTTPS
